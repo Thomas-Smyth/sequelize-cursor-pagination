@@ -1,6 +1,6 @@
 {
   "name": "@thomas-smyth/sequelize-cursor-pagination",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Cursor pagination utility for sequelize.",
   "repository": "https://github.com/Thomas-Smyth/sequelize-cursor-pagination.git",
   "keywords": [
