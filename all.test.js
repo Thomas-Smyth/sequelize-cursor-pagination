@@ -40,7 +40,7 @@ test('Paginates correctly on primary key ordered ASC', async () => {
   expect(page.results.length).toBe(2);
   expect(page.results[0].id).toBe(1);
   expect(page.results[1].id).toBe(2);
-  expect(page.cursors.prevCursor).toBeNull();
+  expect(page.cursors.prevCursor).not.toBeNull();
   expect(page.cursors.hasPrev).toBe(false);
   expect(page.cursors.nextCursor).not.toBeNull();
   expect(page.cursors.hasNext).toBe(true);
@@ -59,7 +59,7 @@ test('Paginates correctly on primary key ordered ASC', async () => {
   expect(page.results[0].id).toBe(5);
   expect(page.cursors.prevCursor).not.toBeNull();
   expect(page.cursors.hasPrev).toBe(true);
-  expect(page.cursors.nextCursor).toBeNull();
+  expect(page.cursors.nextCursor).not.toBeNull();
   expect(page.cursors.hasNext).toBe(false);
 
   // DOWN THROUGH PAGES
@@ -76,7 +76,7 @@ test('Paginates correctly on primary key ordered ASC', async () => {
   expect(page.results.length).toBe(2);
   expect(page.results[0].id).toBe(1);
   expect(page.results[1].id).toBe(2);
-  expect(page.cursors.prevCursor).toBeNull();
+  expect(page.cursors.prevCursor).not.toBeNull();
   expect(page.cursors.hasPrev).toBe(false);
   expect(page.cursors.nextCursor).not.toBeNull();
   expect(page.cursors.hasNext).toBe(true);
@@ -94,7 +94,7 @@ test('Paginates correctly on non primary key ordered ASC', async () => {
   expect(page.results.length).toBe(2);
   expect(page.results[0].id).toBe(2);
   expect(page.results[1].id).toBe(3);
-  expect(page.cursors.prevCursor).toBeNull();
+  expect(page.cursors.prevCursor).not.toBeNull();
   expect(page.cursors.hasPrev).toBe(false);
   expect(page.cursors.nextCursor).not.toBeNull();
   expect(page.cursors.hasNext).toBe(true);
@@ -113,7 +113,7 @@ test('Paginates correctly on non primary key ordered ASC', async () => {
   expect(page.results[0].id).toBe(4);
   expect(page.cursors.prevCursor).not.toBeNull();
   expect(page.cursors.hasPrev).toBe(true);
-  expect(page.cursors.nextCursor).toBeNull();
+  expect(page.cursors.nextCursor).not.toBeNull();
   expect(page.cursors.hasNext).toBe(false);
 
   // DOWN THROUGH PAGES
@@ -130,7 +130,7 @@ test('Paginates correctly on non primary key ordered ASC', async () => {
   expect(page.results.length).toBe(2);
   expect(page.results[0].id).toBe(2);
   expect(page.results[1].id).toBe(3);
-  expect(page.cursors.prevCursor).toBeNull();
+  expect(page.cursors.prevCursor).not.toBeNull();
   expect(page.cursors.hasPrev).toBe(false);
   expect(page.cursors.nextCursor).not.toBeNull();
   expect(page.cursors.hasNext).toBe(true);
@@ -148,7 +148,7 @@ test('Paginates correctly on primary key ordered DESC', async () => {
   expect(page.results.length).toBe(2);
   expect(page.results[0].id).toBe(5);
   expect(page.results[1].id).toBe(4);
-  expect(page.cursors.prevCursor).toBeNull();
+  expect(page.cursors.prevCursor).not.toBeNull();
   expect(page.cursors.hasPrev).toBe(false);
   expect(page.cursors.nextCursor).not.toBeNull();
   expect(page.cursors.hasNext).toBe(true);
@@ -167,7 +167,7 @@ test('Paginates correctly on primary key ordered DESC', async () => {
   expect(page.results[0].id).toBe(1);
   expect(page.cursors.prevCursor).not.toBeNull();
   expect(page.cursors.hasPrev).toBe(true);
-  expect(page.cursors.nextCursor).toBeNull();
+  expect(page.cursors.nextCursor).not.toBeNull();
   expect(page.cursors.hasNext).toBe(false);
 
   // DOWN THROUGH PAGES
@@ -184,7 +184,7 @@ test('Paginates correctly on primary key ordered DESC', async () => {
   expect(page.results.length).toBe(2);
   expect(page.results[0].id).toBe(5);
   expect(page.results[1].id).toBe(4);
-  expect(page.cursors.prevCursor).toBeNull();
+  expect(page.cursors.prevCursor).not.toBeNull();
   expect(page.cursors.hasPrev).toBe(false);
   expect(page.cursors.nextCursor).not.toBeNull();
   expect(page.cursors.hasNext).toBe(true);
@@ -202,7 +202,7 @@ test('Paginates correctly on non primary key ordered DESC', async () => {
   expect(page.results.length).toBe(2);
   expect(page.results[0].id).toBe(4);
   expect(page.results[1].id).toBe(5);
-  expect(page.cursors.prevCursor).toBeNull();
+  expect(page.cursors.prevCursor).not.toBeNull();
   expect(page.cursors.hasPrev).toBe(false);
   expect(page.cursors.nextCursor).not.toBeNull();
   expect(page.cursors.hasNext).toBe(true);
@@ -221,7 +221,7 @@ test('Paginates correctly on non primary key ordered DESC', async () => {
   expect(page.results[0].id).toBe(2);
   expect(page.cursors.prevCursor).not.toBeNull();
   expect(page.cursors.hasPrev).toBe(true);
-  expect(page.cursors.nextCursor).toBeNull();
+  expect(page.cursors.nextCursor).not.toBeNull();
   expect(page.cursors.hasNext).toBe(false);
 
   // DOWN THROUGH PAGES
@@ -238,7 +238,7 @@ test('Paginates correctly on non primary key ordered DESC', async () => {
   expect(page.results.length).toBe(2);
   expect(page.results[0].id).toBe(4);
   expect(page.results[1].id).toBe(5);
-  expect(page.cursors.prevCursor).toBeNull();
+  expect(page.cursors.prevCursor).not.toBeNull();
   expect(page.cursors.hasPrev).toBe(false);
   expect(page.cursors.nextCursor).not.toBeNull();
   expect(page.cursors.hasNext).toBe(true);
@@ -256,7 +256,7 @@ test('Paginates correctly on non unique field ordered ASC', async () => {
   expect(page.results.length).toBe(2);
   expect(page.results[0].id).toBe(1);
   expect(page.results[1].id).toBe(5);
-  expect(page.cursors.prevCursor).toBeNull();
+  expect(page.cursors.prevCursor).not.toBeNull();
   expect(page.cursors.hasPrev).toBe(false);
   expect(page.cursors.nextCursor).not.toBeNull();
   expect(page.cursors.hasNext).toBe(true);
@@ -275,7 +275,7 @@ test('Paginates correctly on non unique field ordered ASC', async () => {
   expect(page.results[0].id).toBe(4);
   expect(page.cursors.prevCursor).not.toBeNull();
   expect(page.cursors.hasPrev).toBe(true);
-  expect(page.cursors.nextCursor).toBeNull();
+  expect(page.cursors.nextCursor).not.toBeNull();
   expect(page.cursors.hasNext).toBe(false);
 
   // DOWN THROUGH PAGES
@@ -292,7 +292,7 @@ test('Paginates correctly on non unique field ordered ASC', async () => {
   expect(page.results.length).toBe(2);
   expect(page.results[0].id).toBe(1);
   expect(page.results[1].id).toBe(5);
-  expect(page.cursors.prevCursor).toBeNull();
+  expect(page.cursors.prevCursor).not.toBeNull();
   expect(page.cursors.hasPrev).toBe(false);
   expect(page.cursors.nextCursor).not.toBeNull();
   expect(page.cursors.hasNext).toBe(true);
@@ -310,7 +310,7 @@ test('Paginates correctly on non unique field ordered DESC', async () => {
   expect(page.results.length).toBe(2);
   expect(page.results[0].id).toBe(2);
   expect(page.results[1].id).toBe(3);
-  expect(page.cursors.prevCursor).toBeNull();
+  expect(page.cursors.prevCursor).not.toBeNull();
   expect(page.cursors.hasPrev).toBe(false);
   expect(page.cursors.nextCursor).not.toBeNull();
   expect(page.cursors.hasNext).toBe(true);
@@ -329,7 +329,7 @@ test('Paginates correctly on non unique field ordered DESC', async () => {
   expect(page.results[0].id).toBe(5);
   expect(page.cursors.prevCursor).not.toBeNull();
   expect(page.cursors.hasPrev).toBe(true);
-  expect(page.cursors.nextCursor).toBeNull();
+  expect(page.cursors.nextCursor).not.toBeNull();
   expect(page.cursors.hasNext).toBe(false);
 
   // DOWN THROUGH PAGES
@@ -346,7 +346,7 @@ test('Paginates correctly on non unique field ordered DESC', async () => {
   expect(page.results.length).toBe(2);
   expect(page.results[0].id).toBe(2);
   expect(page.results[1].id).toBe(3);
-  expect(page.cursors.prevCursor).toBeNull();
+  expect(page.cursors.prevCursor).not.toBeNull();
   expect(page.cursors.hasPrev).toBe(false);
   expect(page.cursors.nextCursor).not.toBeNull();
   expect(page.cursors.hasNext).toBe(true);
@@ -364,7 +364,7 @@ test('Paginates correctly when findAll attributes are provided', async () => {
   expect(page.results[1].id).toBe(2);
   expect(page.results[0].extra1).toBeUndefined();
   expect(page.results[1].extra1).toBeUndefined();
-  expect(page.cursors.prevCursor).toBeNull();
+  expect(page.cursors.prevCursor).not.toBeNull();
   expect(page.cursors.hasPrev).toBe(false);
   expect(page.cursors.nextCursor).not.toBeNull();
   expect(page.cursors.hasNext).toBe(true);
@@ -386,7 +386,7 @@ test('Paginates correctly when findAll attributes are provided', async () => {
   expect(page.results[0].extra1).toBeUndefined();
   expect(page.cursors.prevCursor).not.toBeNull();
   expect(page.cursors.hasPrev).toBe(true);
-  expect(page.cursors.nextCursor).toBeNull();
+  expect(page.cursors.nextCursor).not.toBeNull();
   expect(page.cursors.hasNext).toBe(false);
 
   // DOWN THROUGH PAGES
@@ -407,7 +407,7 @@ test('Paginates correctly when findAll attributes are provided', async () => {
   expect(page.results[1].id).toBe(2);
   expect(page.results[0].extra1).toBeUndefined();
   expect(page.results[1].extra1).toBeUndefined();
-  expect(page.cursors.prevCursor).toBeNull();
+  expect(page.cursors.prevCursor).not.toBeNull();
   expect(page.cursors.hasPrev).toBe(false);
   expect(page.cursors.nextCursor).not.toBeNull();
   expect(page.cursors.hasNext).toBe(true);

@@ -99,10 +99,8 @@ function withPagination({ methodName = 'paginate', primaryKeyField = 'id' } = {}
           ...queryArgs
         })
         .then((results) => {
-          const hasMore = results.length > limit;
-
           let hasPrev, hasNext;
-
+          const hasMore = results.length > limit;
           // No cursor means that there's no starting point offset so there's nothing before the start of the results
           // thus no previous values.
           // We have a next value if there's more rows than shown on this page.
@@ -121,8 +119,9 @@ function withPagination({ methodName = 'paginate', primaryKeyField = 'id' } = {}
           if (cursor && cursor.direction === 'prev') results.reverse();
 
           // Get the values of the first and last value to use as cursors for the previous and next page.
-          const prevValues = hasPrev ? getValues(order, results[0]) : null;
-          const nextValues = hasNext ? getValues(order, results[results.length - 1]) : null;
+          const prevValues = results.length !== 0 ? getValues(order, results[0]) : null;
+          const nextValues =
+            results.length !== 0 ? getValues(order, results[results.length - 1]) : null;
 
           // Return page and cursor info.
           return {
