@@ -1,0 +1,33 @@
+{
+  "name": "@thomas-smyth/sequelize-cursor-pagination",
+  "version": "1.0.0",
+  "description": "Cursor pagination utility for sequelize.",
+  "repository": "https://github.com/Thomas-Smyth/sequelize-cursor-pagination.git",
+  "keywords": [
+    "sequelize",
+    "pagination"
+  ],
+  "author": "Thomas Smyth <thomas.smyth3141@gmail.com>",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint --fix . && prettier --write \"./*.js\"",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "eslint": "^7.8.1",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jest": "^24.0.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "husky": "^4.2.5",
+    "jest": "^26.4.2",
+    "lint-staged": "^10.3.0",
+    "prettier": "^2.1.1",
+    "sequelize": "^6.3.5",
+    "sqlite3": "^5.0.0"
+  }
+}

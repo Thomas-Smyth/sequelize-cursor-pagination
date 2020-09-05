@@ -1,0 +1,18 @@
+# Test
+all.test.js
+
+# Tools
+.eslintignore
+.eslintrc
+.gitignore
+.huskyrc
+.lintstagedrc
+.prettierrc
+
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+
+# IDEs
+.idea/
