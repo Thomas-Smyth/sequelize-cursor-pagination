@@ -1,5 +1,5 @@
 const { Sequelize, DataTypes } = require('sequelize');
-const withPagination = require('./index');
+const { withSimplePagination } = require('./index');
 
 const sequelize = new Sequelize('sqlite::memory:', { logging: false });
 
@@ -10,7 +10,7 @@ const Test = sequelize.define('test', {
   extra3: DataTypes.INTEGER
 });
 
-withPagination()(Test);
+withSimplePagination()(Test);
 
 function generateTestData() {
   return Promise.all([
