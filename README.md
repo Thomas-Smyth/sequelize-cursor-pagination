@@ -16,7 +16,7 @@
 </div>
 
 ## About
-`sequelize-cursor-pagination` is a Sequelize modal decorator that implemented two kinds of pagination:
+`sequelize-cursor-pagination` is a Sequelize modal decorator that implements two kinds of pagination:
  * Simple Pagination - A non-formal pagination approach that is intended to be simple and easy to use.
  * Relay Pagination - A formal pagination approach that meets the [Relay GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm).
 
