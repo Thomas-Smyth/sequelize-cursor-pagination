@@ -1,5 +1,5 @@
 # Test
-all.test.js
+*.test.js
 
 # Tools
 .eslintignore
