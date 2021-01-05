@@ -37,6 +37,7 @@ test('Paginates correctly on primary key ordered ASC', async () => {
 
   // UP THROUGH PAGES
   page = await Test.paginate({ first: 2 });
+  expect(page.totalCount).toBe(5);
   expect(page.edges.length).toBe(2);
   expect(page.edges[0].node.id).toBe(1);
   expect(page.edges[1].node.id).toBe(2);
@@ -46,6 +47,7 @@ test('Paginates correctly on primary key ordered ASC', async () => {
   expect(page.pageInfo.hasNextPage).toBe(true);
 
   page = await Test.paginate({ first: 2, after: page.pageInfo.endCursor });
+  expect(page.totalCount).toBe(3);
   expect(page.edges.length).toBe(2);
   expect(page.edges[0].node.id).toBe(3);
   expect(page.edges[1].node.id).toBe(4);
@@ -55,6 +57,7 @@ test('Paginates correctly on primary key ordered ASC', async () => {
   expect(page.pageInfo.hasNextPage).toBe(true);
 
   page = await Test.paginate({ first: 2, after: page.pageInfo.endCursor });
+  expect(page.totalCount).toBe(1);
   expect(page.edges.length).toBe(1);
   expect(page.edges[0].node.id).toBe(5);
   expect(page.pageInfo.startCursor).not.toBeNull();
@@ -64,6 +67,7 @@ test('Paginates correctly on primary key ordered ASC', async () => {
 
   // DOWN THROUGH PAGES
   page = await Test.paginate({ last: 2, before: page.pageInfo.startCursor });
+  expect(page.totalCount).toBe(4);
   expect(page.edges.length).toBe(2);
   expect(page.edges[0].node.id).toBe(3);
   expect(page.edges[1].node.id).toBe(4);
@@ -73,6 +77,7 @@ test('Paginates correctly on primary key ordered ASC', async () => {
   expect(page.pageInfo.hasNextPage).toBe(true);
 
   page = await Test.paginate({ last: 2, before: page.pageInfo.startCursor });
+  expect(page.totalCount).toBe(2);
   expect(page.edges.length).toBe(2);
   expect(page.edges[0].node.id).toBe(1);
   expect(page.edges[1].node.id).toBe(2);
@@ -91,6 +96,7 @@ test('Paginates correctly on non primary key ordered ASC', async () => {
 
   // UP THROUGH PAGES
   page = await Test.paginate({ first: 2, order });
+  expect(page.totalCount).toBe(5);
   expect(page.edges.length).toBe(2);
   expect(page.edges[0].node.id).toBe(2);
   expect(page.edges[1].node.id).toBe(3);
@@ -100,6 +106,7 @@ test('Paginates correctly on non primary key ordered ASC', async () => {
   expect(page.pageInfo.hasNextPage).toBe(true);
 
   page = await Test.paginate({ first: 2, order, after: page.pageInfo.endCursor });
+  expect(page.totalCount).toBe(3);
   expect(page.edges.length).toBe(2);
   expect(page.edges[0].node.id).toBe(1);
   expect(page.edges[1].node.id).toBe(5);
@@ -109,6 +116,7 @@ test('Paginates correctly on non primary key ordered ASC', async () => {
   expect(page.pageInfo.hasNextPage).toBe(true);
 
   page = await Test.paginate({ first: 2, order, after: page.pageInfo.endCursor });
+  expect(page.totalCount).toBe(1);
   expect(page.edges.length).toBe(1);
   expect(page.edges[0].node.id).toBe(4);
   expect(page.pageInfo.startCursor).not.toBeNull();
@@ -118,6 +126,7 @@ test('Paginates correctly on non primary key ordered ASC', async () => {
 
   // DOWN THROUGH PAGES
   page = await Test.paginate({ last: 2, order, before: page.pageInfo.startCursor });
+  expect(page.totalCount).toBe(4);
   expect(page.edges.length).toBe(2);
   expect(page.edges[0].node.id).toBe(1);
   expect(page.edges[1].node.id).toBe(5);
@@ -127,6 +136,7 @@ test('Paginates correctly on non primary key ordered ASC', async () => {
   expect(page.pageInfo.hasNextPage).toBe(true);
 
   page = await Test.paginate({ last: 2, order, before: page.pageInfo.startCursor });
+  expect(page.totalCount).toBe(2);
   expect(page.edges.length).toBe(2);
   expect(page.edges[0].node.id).toBe(2);
   expect(page.edges[1].node.id).toBe(3);
@@ -145,6 +155,7 @@ test('Paginates correctly on primary key ordered DESC', async () => {
 
   // UP THROUGH PAGES
   page = await Test.paginate({ first: 2, order });
+  expect(page.totalCount).toBe(5);
   expect(page.edges.length).toBe(2);
   expect(page.edges[0].node.id).toBe(5);
   expect(page.edges[1].node.id).toBe(4);
@@ -154,6 +165,7 @@ test('Paginates correctly on primary key ordered DESC', async () => {
   expect(page.pageInfo.hasNextPage).toBe(true);
 
   page = await Test.paginate({ first: 2, order, after: page.pageInfo.endCursor });
+  expect(page.totalCount).toBe(3);
   expect(page.edges.length).toBe(2);
   expect(page.edges[0].node.id).toBe(3);
   expect(page.edges[1].node.id).toBe(2);
@@ -163,6 +175,7 @@ test('Paginates correctly on primary key ordered DESC', async () => {
   expect(page.pageInfo.hasNextPage).toBe(true);
 
   page = await Test.paginate({ first: 2, order, after: page.pageInfo.endCursor });
+  expect(page.totalCount).toBe(1);
   expect(page.edges.length).toBe(1);
   expect(page.edges[0].node.id).toBe(1);
   expect(page.pageInfo.startCursor).not.toBeNull();
@@ -172,6 +185,7 @@ test('Paginates correctly on primary key ordered DESC', async () => {
 
   // DOWN THROUGH PAGES
   page = await Test.paginate({ last: 2, order, before: page.pageInfo.startCursor });
+  expect(page.totalCount).toBe(4);
   expect(page.edges.length).toBe(2);
   expect(page.edges[0].node.id).toBe(3);
   expect(page.edges[1].node.id).toBe(2);
@@ -181,6 +195,7 @@ test('Paginates correctly on primary key ordered DESC', async () => {
   expect(page.pageInfo.hasNextPage).toBe(true);
 
   page = await Test.paginate({ last: 2, order, before: page.pageInfo.startCursor });
+  expect(page.totalCount).toBe(2);
   expect(page.edges.length).toBe(2);
   expect(page.edges[0].node.id).toBe(5);
   expect(page.edges[1].node.id).toBe(4);
@@ -199,6 +214,7 @@ test('Paginates correctly on non primary key ordered DESC', async () => {
 
   // UP THROUGH PAGES
   page = await Test.paginate({ first: 2, order });
+  expect(page.totalCount).toBe(5);
   expect(page.edges.length).toBe(2);
   expect(page.edges[0].node.id).toBe(4);
   expect(page.edges[1].node.id).toBe(5);
@@ -208,6 +224,7 @@ test('Paginates correctly on non primary key ordered DESC', async () => {
   expect(page.pageInfo.hasNextPage).toBe(true);
 
   page = await Test.paginate({ first: 2, order, after: page.pageInfo.endCursor });
+  expect(page.totalCount).toBe(3);
   expect(page.edges.length).toBe(2);
   expect(page.edges[0].node.id).toBe(1);
   expect(page.edges[1].node.id).toBe(3);
@@ -217,6 +234,7 @@ test('Paginates correctly on non primary key ordered DESC', async () => {
   expect(page.pageInfo.hasNextPage).toBe(true);
 
   page = await Test.paginate({ first: 2, order, after: page.pageInfo.endCursor });
+  expect(page.totalCount).toBe(1);
   expect(page.edges.length).toBe(1);
   expect(page.edges[0].node.id).toBe(2);
   expect(page.pageInfo.startCursor).not.toBeNull();
@@ -226,6 +244,7 @@ test('Paginates correctly on non primary key ordered DESC', async () => {
 
   // DOWN THROUGH PAGES
   page = await Test.paginate({ last: 2, order, before: page.pageInfo.startCursor });
+  expect(page.totalCount).toBe(4);
   expect(page.edges.length).toBe(2);
   expect(page.edges[0].node.id).toBe(1);
   expect(page.edges[1].node.id).toBe(3);
@@ -235,6 +254,7 @@ test('Paginates correctly on non primary key ordered DESC', async () => {
   expect(page.pageInfo.hasNextPage).toBe(true);
 
   page = await Test.paginate({ last: 2, order, before: page.pageInfo.startCursor });
+  expect(page.totalCount).toBe(2);
   expect(page.edges.length).toBe(2);
   expect(page.edges[0].node.id).toBe(4);
   expect(page.edges[1].node.id).toBe(5);
@@ -253,6 +273,7 @@ test('Paginates correctly on non unique field ordered ASC', async () => {
 
   // UP THROUGH PAGES
   page = await Test.paginate({ first: 2, order });
+  expect(page.totalCount).toBe(5);
   expect(page.edges.length).toBe(2);
   expect(page.edges[0].node.id).toBe(1);
   expect(page.edges[1].node.id).toBe(5);
@@ -262,6 +283,7 @@ test('Paginates correctly on non unique field ordered ASC', async () => {
   expect(page.pageInfo.hasNextPage).toBe(true);
 
   page = await Test.paginate({ first: 2, order, after: page.pageInfo.endCursor });
+  expect(page.totalCount).toBe(3);
   expect(page.edges.length).toBe(2);
   expect(page.edges[0].node.id).toBe(2);
   expect(page.edges[1].node.id).toBe(3);
@@ -271,6 +293,7 @@ test('Paginates correctly on non unique field ordered ASC', async () => {
   expect(page.pageInfo.hasNextPage).toBe(true);
 
   page = await Test.paginate({ first: 2, order, after: page.pageInfo.endCursor });
+  expect(page.totalCount).toBe(1);
   expect(page.edges.length).toBe(1);
   expect(page.edges[0].node.id).toBe(4);
   expect(page.pageInfo.startCursor).not.toBeNull();
@@ -280,6 +303,7 @@ test('Paginates correctly on non unique field ordered ASC', async () => {
 
   // DOWN THROUGH PAGES
   page = await Test.paginate({ last: 2, order, before: page.pageInfo.startCursor });
+  expect(page.totalCount).toBe(4);
   expect(page.edges.length).toBe(2);
   expect(page.edges[0].node.id).toBe(2);
   expect(page.edges[1].node.id).toBe(3);
@@ -289,6 +313,7 @@ test('Paginates correctly on non unique field ordered ASC', async () => {
   expect(page.pageInfo.hasNextPage).toBe(true);
 
   page = await Test.paginate({ last: 2, order, before: page.pageInfo.startCursor });
+  expect(page.totalCount).toBe(2);
   expect(page.edges.length).toBe(2);
   expect(page.edges[0].node.id).toBe(1);
   expect(page.edges[1].node.id).toBe(5);
@@ -307,6 +332,7 @@ test('Paginates correctly on non unique field ordered DESC', async () => {
 
   // UP THROUGH PAGES
   page = await Test.paginate({ first: 2, order });
+  expect(page.totalCount).toBe(5);
   expect(page.edges.length).toBe(2);
   expect(page.edges[0].node.id).toBe(2);
   expect(page.edges[1].node.id).toBe(3);
@@ -316,6 +342,7 @@ test('Paginates correctly on non unique field ordered DESC', async () => {
   expect(page.pageInfo.hasNextPage).toBe(true);
 
   page = await Test.paginate({ first: 2, order, after: page.pageInfo.endCursor });
+  expect(page.totalCount).toBe(3);
   expect(page.edges.length).toBe(2);
   expect(page.edges[0].node.id).toBe(4);
   expect(page.edges[1].node.id).toBe(1);
@@ -325,6 +352,7 @@ test('Paginates correctly on non unique field ordered DESC', async () => {
   expect(page.pageInfo.hasNextPage).toBe(true);
 
   page = await Test.paginate({ first: 2, order, after: page.pageInfo.endCursor });
+  expect(page.totalCount).toBe(1);
   expect(page.edges.length).toBe(1);
   expect(page.edges[0].node.id).toBe(5);
   expect(page.pageInfo.startCursor).not.toBeNull();
@@ -334,6 +362,7 @@ test('Paginates correctly on non unique field ordered DESC', async () => {
 
   // DOWN THROUGH PAGES
   page = await Test.paginate({ last: 2, order, before: page.pageInfo.startCursor });
+  expect(page.totalCount).toBe(4);
   expect(page.edges.length).toBe(2);
   expect(page.edges[0].node.id).toBe(4);
   expect(page.edges[1].node.id).toBe(1);
@@ -343,6 +372,7 @@ test('Paginates correctly on non unique field ordered DESC', async () => {
   expect(page.pageInfo.hasNextPage).toBe(true);
 
   page = await Test.paginate({ last: 2, order, before: page.pageInfo.startCursor });
+  expect(page.totalCount).toBe(2);
   expect(page.edges.length).toBe(2);
   expect(page.edges[0].node.id).toBe(2);
   expect(page.edges[1].node.id).toBe(3);
@@ -359,6 +389,7 @@ test('Paginates correctly when findAll attributes are provided', async () => {
 
   // UP THROUGH PAGES
   page = await Test.paginate({ first: 2, attributes: ['id'] });
+  expect(page.totalCount).toBe(5);
   expect(page.edges.length).toBe(2);
   expect(page.edges[0].node.id).toBe(1);
   expect(page.edges[1].node.id).toBe(2);
@@ -370,6 +401,7 @@ test('Paginates correctly when findAll attributes are provided', async () => {
   expect(page.pageInfo.hasNextPage).toBe(true);
 
   page = await Test.paginate({ first: 2, attributes: ['id'], after: page.pageInfo.endCursor });
+  expect(page.totalCount).toBe(3);
   expect(page.edges.length).toBe(2);
   expect(page.edges[0].node.id).toBe(3);
   expect(page.edges[1].node.id).toBe(4);
@@ -381,6 +413,7 @@ test('Paginates correctly when findAll attributes are provided', async () => {
   expect(page.pageInfo.hasNextPage).toBe(true);
 
   page = await Test.paginate({ first: 2, attributes: ['id'], after: page.pageInfo.endCursor });
+  expect(page.totalCount).toBe(1);
   expect(page.edges.length).toBe(1);
   expect(page.edges[0].node.id).toBe(5);
   expect(page.edges[0].node.extra1).toBeUndefined();
@@ -391,6 +424,7 @@ test('Paginates correctly when findAll attributes are provided', async () => {
 
   // DOWN THROUGH PAGES
   page = await Test.paginate({ last: 2, attributes: ['id'], before: page.pageInfo.startCursor });
+  expect(page.totalCount).toBe(4);
   expect(page.edges.length).toBe(2);
   expect(page.edges[0].node.id).toBe(3);
   expect(page.edges[1].node.id).toBe(4);
@@ -402,6 +436,7 @@ test('Paginates correctly when findAll attributes are provided', async () => {
   expect(page.pageInfo.hasNextPage).toBe(true);
 
   page = await Test.paginate({ last: 2, attributes: ['id'], before: page.pageInfo.startCursor });
+  expect(page.totalCount).toBe(2);
   expect(page.edges.length).toBe(2);
   expect(page.edges[0].node.id).toBe(1);
   expect(page.edges[1].node.id).toBe(2);

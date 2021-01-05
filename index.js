@@ -199,7 +199,7 @@ module.exports.withRelayPagination = function ({
       }
 
       return model
-        .findAll({
+        .findAndCountAll({
           where,
           order,
           ...(limit && { limit: limit + 1 }),
@@ -217,24 +217,25 @@ module.exports.withRelayPagination = function ({
           const [hasPreviousPage, hasNextPage] =
             after || before
               ? direction === 'next'
-                ? [true, results.length > limit]
-                : [results.length > limit, true]
-              : [false, results.length > limit];
+                ? [true, results.rows.length > limit]
+                : [results.rows.length > limit, true]
+              : [false, results.rows.length > limit];
 
           // Remove the extra value used to check for additional values.
-          if (results.length > limit) results.pop();
+          if (results.rows.length > limit) results.rows.pop();
 
           // Reorder the results if we changed the order in the query.
-          if (direction === 'prev') results.reverse();
+          if (direction === 'prev') results.rows.reverse();
 
           // Map results into Relay spec format
-          const edges = results.map((result) => ({
+          const edges = results.rows.map((result) => ({
             cursor: encodeCursor(result, order),
             node: result
           }));
 
           // Return page and cursor info.
           return {
+            totalCount: results.count,
             edges,
             pageInfo: {
               hasPreviousPage,
